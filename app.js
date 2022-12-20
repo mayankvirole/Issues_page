@@ -6,11 +6,10 @@ const app = express();
 app.use( cors());
 app.use(express.json());
 
-app.use( express.static('public'));
+app.use( express.static(__dirname + "/public"));
 
 app.get("/", (req,res) => {
-	res.json({message : 'Hello from server!'});
-	// res.sendFile(path.resolve(__dirname , '../issues_page/dist', 'index.html'));
+	console.log("server is connected !");
 })
 const PORT = process.env.PORT || 3000;
 

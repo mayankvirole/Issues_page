@@ -4,14 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build-app": "git pull && npm run build-client && npm install && npm start",
-    "build-client": "mkdir -p public && cd issues_page && npm run build-app && cd ..",
-    "start": "pm2 start index.js -n Vuetomate && pm2 monit"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   }
 }
