@@ -3,18 +3,25 @@
 		<div class="row">
 			<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 ci">
 				<h1 class="text-center">Create a new Issue</h1>
-				<form class="border border-primary p-5" style="margin-top:70px;height:auto;padding-top:2rem !important;"
-					submit.prevent="handleSubmitForm">
+				<form class="border border-primary p-5" @submit.prevent="handleSubmitForm">
 					<label for="title">Title </label>
 					<input class="form-control" type="text" name="title" id="title" required v-model="issue.title" placeholder="Enter issue title">
 
 					<label for="desc">Description</label>
-					<textarea class="form-control" name="desc" id="desc" cols="60" rows="10" placeholder="Describe your issue in detail."
-						resize="vertical" required v-model="issue.desc">
-					</textarea>
-
+					<editor 
+						api-key="x2wa24yd18evrl913zegfr0p5t0d37jbprlqo1jyt2sk8clw" 
+						plugins="code lists" 
+						v-model="issue.desc"
+						id="desc" 
+						output-format="text" 
+						:init="{
+							selector: '#desc',
+            branding: false,
+						height : 300,
+						placeholder : 'Describe your issue in detail here.'
+						}" />
 					<center>
-						<button class="btn btn-primary btn-block w-50 my-4">Create Issue</button>
+						<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
 					</center>
 				</form>
 			</div>
@@ -26,6 +33,7 @@
 <script>
 import swal from 'sweetalert';
 import "../assets/createIssue.css";
+import Editor from '@tinymce/tinymce-vue';
 
 export default {
 	data() {
@@ -40,7 +48,8 @@ export default {
 	methods: {
 		async handleSubmitForm() {
 			try {
-				let response=await this.$http.post("/issue/create-issue",this.issue);
+				console.log("entered");
+				let response = await this.$http.post("/issue/create-issue",this.issue);
 				if(response.data) {
 					swal("Success","Issue was created");
 					this.$router.push("/home");
@@ -55,6 +64,9 @@ export default {
 				}
 			}
 		}
+	},
+	components: {
+		'editor': Editor
 	}
 }
 </script>

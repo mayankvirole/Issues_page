@@ -8,7 +8,10 @@ form {
   flex-direction: column;
 	overflow: auto;
 	border-radius: 4px;
-	box-shadow: 1px 5px 5px 1px #a0c5e8
+	box-shadow: 1px 5px 5px 1px #a0c5e8;
+	margin-top : 1.5rem;
+	height:auto;
+	padding-top:2rem !important;
 }
 
 form > label {
