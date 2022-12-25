@@ -1,4 +1,4 @@
 module.exports = {
-  database: "mongodb://localhost:27017/issues_page",
+  database: process.env.DB_URL,
   secret: "secret"
 };
