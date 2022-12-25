@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 register">
         <h1>Register</h1>
         <form
           class="text-center border border-primary p-5"
@@ -33,8 +33,8 @@
             v-model="register.password"
           />
           <p>
-            Already have an account??<router-link to="/"
-              >click here</router-link
+            Already have an account? <router-link to="/"
+              >Login</router-link
             >
             <!-- Create account button -->
             <center>
@@ -50,6 +50,7 @@
 </template>
 <script>
 import swal from "sweetalert";
+import "../../assets/register.css";
 export default {
   data() {
     return {

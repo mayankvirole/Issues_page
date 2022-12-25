@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 login" >
         <h1>Login</h1>
         <form
           class="text-center border border-primary p-5"
@@ -24,13 +24,13 @@
             v-model="login.password"
           />
           <p>
-            Don't have an account?<router-link to="/register"
-              >click here</router-link
+            Don't have an account?  <router-link to="/register"
+              >Register</router-link
             >
           </p>
           <!-- Sign in button -->
           <center>
-            <button class="btn btn-primary btn-block w-75 my-4" type="submit">
+            <button class="btn btn-primary btn-block w-50 my-4" type="submit">
               Sign in
             </button>
           </center>
@@ -41,6 +41,7 @@
 </template>
 <script>
 import swal from "sweetalert";
+import "../../assets/login.css";
 export default {
   data() {
     return {

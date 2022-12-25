@@ -1,0 +1,25 @@
+.ci > h1{
+	margin-top: 2rem;
+	font-weight: bolder;
+}
+
+form {
+	display: flex;
+  flex-direction: column;
+	overflow: auto;
+	border-radius: 4px;
+	box-shadow: 1px 5px 5px 1px #a0c5e8
+}
+
+form > label {
+	margin: 1rem 0;
+	font-weight: bolder;
+}
+
+form > input {
+	margin-bottom: 0.7rem;
+}
+
+form > textarea {
+	margin-top: 0.7rem;
+}
