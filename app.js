@@ -30,7 +30,9 @@ app.get("/", (req,res) => {
 })
 
 const userRoutes = require("./api/user/routes/user"); 
+const issueRoutes = require("./api/issues/routes/issues")
 app.use("/user", userRoutes);
+app.use("/issue", issueRoutes);
 
 const PORT = process.env.PORT || 3000;
 

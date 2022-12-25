@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/appHome.vue";
+import CreateIssue from "../views/createIssue.vue";
 Vue.use(VueRouter);
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: () => import("../views/appRegister.vue")
+  },
+  {
+    path : "/create_issue",
+    name : "create_issue",
+    component: CreateIssue
   }
 ];
 const router = new VueRouter({

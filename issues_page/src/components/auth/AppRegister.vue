@@ -36,7 +36,7 @@
             Already have an account??<router-link to="/"
               >click here</router-link
             >
-            <!-- Sign in button -->
+            <!-- Create account button -->
             <center>
               <button class="btn btn-primary btn-block w-75 my-4" type="submit">
                 Create Account
