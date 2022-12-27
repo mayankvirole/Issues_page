@@ -68,7 +68,7 @@ export default {
         let token = response.data.token;
         if (token) {
           localStorage.setItem("jwt", token);
-          this.$router.push("/");
+          this.$router.push("/home");
           swal("Success", "Registration Was successful", "success");
         } else {
           swal("Error", "Something Went Wrong", "error");

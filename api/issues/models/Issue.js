@@ -14,6 +14,12 @@ const issueSchema = mongoose.Schema({
 	createdAt : {
 		type : Date,
 		default:	Date.now()
+	},
+
+	author : 
+	{		
+		id: String,
+		username: String
 	}
 })
 
@@ -26,5 +32,4 @@ issueSchema.statics.findByCredentials = async (title) => {
   return issue;
 }
 
-const Issue = mongoose.model("Issue", issueSchema);
-module.exports = Issue;
+module.exports = mongoose.model("Issue", issueSchema);

@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Home</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -38,14 +38,23 @@
         </div>
       </div>
     </section>
+    <section>
+      <div v-for="issue in issues" :key="issue._id">{{ issue.title }}</div>
+    </section>
+    <p class="btn">
+      <router-link to="/create_issue">New Issue</router-link>
+    </p>
   </div>
 </template>
 <script>
+import "../../../issues_page/src/assets/home.css"
 import VueJwtDecode from "vue-jwt-decode";
+import swal from 'sweetalert';
 export default {
   data() {
     return {
-      user: {}
+      user: {},
+      issues: []  
     };
   },
   methods: {
@@ -57,11 +66,28 @@ export default {
     logUserOut() {
       localStorage.removeItem("jwt");
       this.$router.push("/");
+    },
+    async getAllIssues (){
+      try{
+        let response = await this.$http.get("/issue/all-issues");
+        if(response.data){
+          this.issues = response.data.Issues;
+          console.log(response.data);
+        }
+      }
+      catch(err){
+        let error=err.response;
+				if(error.status==409) {
+					swal("Error",error.data.message,"error");
+				} else {
+					swal("Error",error.data.err.message,"error");
+				}
+      }
     }
   },
   created() {
     this.getUserDetails();
+    this.getAllIssues();
   }
 };
 </script>
-<style scoped></style>

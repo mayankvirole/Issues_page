@@ -3,7 +3,6 @@ const User = require("../models/User");
 exports.registerNewUser = async (req, res) => {
   try {
     let isUser = await User.find({ email: req.body.email });
-   console.log(isUser);
     if (isUser.length >= 1) {
       return res.status(409).json({
         message: "email already in use"

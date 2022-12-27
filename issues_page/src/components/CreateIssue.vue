@@ -34,6 +34,7 @@
 import swal from 'sweetalert';
 import "../assets/createIssue.css";
 import Editor from '@tinymce/tinymce-vue';
+import VueJwtDecode from "vue-jwt-decode";
 
 export default {
 	data() {
@@ -41,6 +42,10 @@ export default {
 			issue: {
 				title: "",
 				desc: "",
+				author : {
+					id : "",
+					username : ""
+				}
 			}
 		}
 	},
@@ -48,10 +53,9 @@ export default {
 	methods: {
 		async handleSubmitForm() {
 			try {
-				console.log("entered");
 				let response = await this.$http.post("/issue/create-issue",this.issue);
 				if(response.data) {
-					swal("Success","Issue was created");
+					swal("Success","Issue was created", "success");
 					this.$router.push("/home");
 				}
 			}
@@ -63,10 +67,19 @@ export default {
 					swal("Error",error.data.err.message,"error");
 				}
 			}
+		},
+		generateAuth(){
+			let token = localStorage.getItem("jwt");
+			let decoded = VueJwtDecode.decode(token);
+			this.issue.author.id = decoded._id;
+			this.issue.author.username = decoded.name;
 		}
 	},
 	components: {
 		'editor': Editor
+	},
+	created () {
+		this.generateAuth();
 	}
 }
 </script>

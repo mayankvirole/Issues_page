@@ -21,7 +21,8 @@ const userSchema = mongoose.Schema({
         required: true
       }
     }
-  ]
+  ],
+  issues : [{type : mongoose.Schema.Types.ObjectId, ref : 'Issue'}]
 });
 
 //this method will hash the password before saving the user model
