@@ -42,7 +42,8 @@ export default {
   data() {
     return {
       user: {},
-      issues: []
+      issues: [],
+      myIssues : []
     };
   },
   methods: {
@@ -71,8 +72,20 @@ export default {
         }
       }
     },
-    openIssue() {
-
+    async getMyIssues() {
+      try{
+        let response = await this.$http.get("/issue/my-issues", this.user.username);
+        if(response.data) this.myIssues = response.data.Issues;
+      }
+      catch(err)
+      {
+        let error=err.response;
+        if(error.status==409) {
+          swal("Error",error.data.message,"error");
+        } else {
+          swal("Error",error.data.err.message,"error");
+        }
+      }
     }
   },
   created() {

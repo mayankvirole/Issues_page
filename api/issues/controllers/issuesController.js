@@ -25,6 +25,17 @@ exports.createNewIssue = async (req, res) => {
 	}
 }
 
+exports.getIssuesByUser = async (req,res) => {
+	try{
+		console.log(req.body);
+		let Issues = await Issue.find({"author.username" : req.body.username });
+		res.status(201).json({Issues});
+	}
+	catch (err) {
+		res.status(400).json({err : err});
+	}
+}
+
 exports.getAllIssues =  async (req,res) => {
 	try{
 		let Issues = await Issue.find({})

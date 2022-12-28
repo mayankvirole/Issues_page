@@ -8,6 +8,12 @@ exports.registerNewUser = async (req, res) => {
         message: "email already in use"
       });
     }
+    let iu = await User.find({username : req.body.name});
+    if(iu.length >= 1){
+      return res.status(409).json({
+        message: "this username is taken"
+      });
+    }
     const user = new User({
       name: req.body.name,
       email: req.body.email,
