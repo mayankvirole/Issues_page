@@ -25,9 +25,13 @@ exports.createNewIssue = async (req, res) => {
 	}
 }
 
+exports.getIssueClicked = async (req,res) => {
+	try{}
+	catch(err){}
+}
+
 exports.getIssuesByUser = async (req,res) => {
 	try{
-		console.log(req.body);
 		let Issues = await Issue.find({"author.username" : req.body.username });
 		res.status(201).json({Issues});
 	}

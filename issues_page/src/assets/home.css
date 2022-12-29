@@ -33,8 +33,13 @@
 }
 
 .all{
-	padding: 1rem;
 	text-align: left;
+}
+
+.active-pane{
+	border: 1px grey solid;
+	border-radius: 4px;
+	padding: 1rem;
 }
 
 @media  ( max-width : 440px ){
