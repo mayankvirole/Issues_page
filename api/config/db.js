@@ -1,4 +1,4 @@
 module.exports = {
   database: process.env.DB_URL,
-  secret: "secret"
+  secret: process.env.SECRET
 };

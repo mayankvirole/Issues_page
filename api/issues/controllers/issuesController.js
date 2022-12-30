@@ -1,4 +1,6 @@
 const Issue = require("../models/Issue");
+const http = require('http');
+const url = require('url');
 
 exports.createNewIssue = async (req, res) => {
 	try{
@@ -25,9 +27,16 @@ exports.createNewIssue = async (req, res) => {
 	}
 }
 
-exports.getIssueClicked = async (req,res) => {
-	try{}
-	catch(err){}
+exports.getIssuedById = async (req,res) => {
+	try{
+		const queryObject = url.parse(req.url, true).query;
+		let Is = await Issue.findById(queryObject.id);
+		res.status(201).json({Is});
+	} 
+
+	catch(err){
+		res.status(400).json({err : err});
+	}
 }
 
 exports.getIssuesByUser = async (req,res) => {
