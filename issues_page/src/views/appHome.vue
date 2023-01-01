@@ -17,30 +17,44 @@
         </div>
       </div>
     </nav>
-    <section >
+    <section>
       <div class="container mt-5">
         <div class="issue-container">
-          <h3 class="all"><span @click="toggle" v-bind:class="{'active-pane' : !toggleIssues}">All Issues</span> <span @click ="toggle" v-bind:class="{'active-pane' : toggleIssues}">My Issues</span></h3>
-          <div v-if="!toggleIssues" >
-          <div v-for="issue in issues" :key="issue._id" class="issue">
-            <h4>{{ issue.title }}</h4>
-            <h4>Created By {{issue.author.username  }} at {{ issue.createdAt.substring(0,10)  }}</h4>
+          <ul>
+            <li>
+              <h3><span @click="toggle" v-bind:class="{ 'active-pane': !toggleIssues , 'inactive' : toggleIssues} ">All Issues</span>
+              </h3>
+            </li>
+            <li>
+              <h3><span @click="toggle" v-bind:class="{ 'active-pane': toggleIssues ,  'inactive' : !toggleIssues} ">My Issues</span></h3>
+            </li>
+          </ul>
+          <div v-if="!toggleIssues">
+            <div v-for="issue in issues" :key="issue._id" class="issue">
+              <router-link :to="'/Issue?id=' + issue._id">
+                <h4>{{ issue.title }}</h4>
+              </router-link>
+              <h4>Created By {{ issue.author.username }} at {{ issue.createdAt.substring(0, 10) }}</h4>
+            </div>
+
           </div>
+          <div v-if="toggleIssues">
+            <div v-for="issue in myIssues" :key="issue._id" class="issue">
+              <router-link :to="'/Issue?id=' + issue._id">
+                <h4>{{ issue.title }}</h4>
+              </router-link>
+              <h4>Created at {{ issue.createdAt.substring(0, 10) }}</h4>
+            </div>
           </div>
-          <div v-if="toggleIssues" >
-          <div v-for="issue in myIssues" :key="issue._id" class="issue">
-            <h4>{{ issue.title }}</h4>
-            <h4>Created at {{ issue.createdAt.substring(0,10) }}</h4>
-          </div>
-          </div>
+
         </div>
       </div>
     </section>
-         
+
     <div class="container mt-5">
-        <div class="issue-container">
-          <router-link to="/create_issue" class="bton" style="width : fit-content">+ New Issue</router-link>
-        </div>
+      <div class="issue-container">
+        <router-link to="/create_issue" class="bton" style="width : fit-content">+ New Issue</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -54,8 +68,8 @@ export default {
     return {
       user: {},
       issues: [],
-      myIssues : [],
-      toggleIssues : false
+      myIssues: [],
+      toggleIssues: false
     };
   },
   methods: {
@@ -68,8 +82,8 @@ export default {
       localStorage.removeItem("jwt");
       this.$router.push("/");
     },
-    toggle(){
-      this.toggleIssues = !this.toggleIssues;
+    toggle() {
+      this.toggleIssues=!this.toggleIssues;
     },
     async getAllIssues() {
       try {
@@ -88,12 +102,11 @@ export default {
       }
     },
     async getMyIssues() {
-      try{
-        let response = await this.$http.post("/issue/my-issues",{ username : this.user.name});
-        if(response.data.Issues.length >= 1) this.myIssues = response.data.Issues;
+      try {
+        let response=await this.$http.post("/issue/my-issues",{username: this.user.name});
+        if(response.data.Issues.length>=1) this.myIssues=response.data.Issues;
       }
-      catch(err)
-      {
+      catch(err) {
         console.log(err);
       }
     }

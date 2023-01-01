@@ -30,7 +30,7 @@
           </p>
           <!-- Sign in button -->
           <center>
-            <button class="btn btn-primary btn-block w-50 my-4" type="submit">
+            <button class="btn btn-primary btn-block w-50 my-4 sign-in" type="submit">
               Sign in
             </button>
           </center>

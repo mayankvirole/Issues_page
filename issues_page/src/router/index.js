@@ -26,6 +26,11 @@ const routes = [
     path : "/create_issue",
     name : "create_issue",
     component: CreateIssue
+  },
+  {
+    path : "/Issue",
+    name : "display_issue",
+    component : () => import("../views/displayIssue.vue")
   }
 ];
 const router = new VueRouter({

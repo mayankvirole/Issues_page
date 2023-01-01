@@ -28,18 +28,26 @@
 
 .bton:hover {
 	background-color: white;
-	color: hsl(216, 98%, 52%);
+	color: #0d6dfd;
 	border: 1px #0d6efd solid;
 }
 
-.all{
-	text-align: left;
-}
-
 .active-pane{
-	border: 1px grey solid;
+	border: 1px #0d6efd solid;
 	border-radius: 4px;
 	padding: 1rem;
+}
+
+.inactive {
+	border: 1px white solid;
+	border-radius: 4px;
+	padding: 1rem;
+}
+
+.issue-container > ul {
+	list-style-type: none;
+	display: flex;
+	padding-left: 0;
 }
 
 @media  ( max-width : 440px ){

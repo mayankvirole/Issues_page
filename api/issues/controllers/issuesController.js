@@ -27,7 +27,7 @@ exports.createNewIssue = async (req, res) => {
 	}
 }
 
-exports.getIssuedById = async (req,res) => {
+exports.getIssueById = async (req,res) => {
 	try{
 		const queryObject = url.parse(req.url, true).query;
 		let Is = await Issue.findById(queryObject.id);

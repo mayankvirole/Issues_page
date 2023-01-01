@@ -1,3 +1,9 @@
+body {
+	margin : 0;
+	height: 100vh;
+  background: linear-gradient(105deg, #FFB2E6 25%, #D972FF 25%)
+}
+
 .login {
 	margin-top: 2rem;
 }
@@ -8,9 +14,18 @@
 }
 
 form {
-	box-shadow: 1px 5px 5px 1px #a0c5e8
+	box-shadow: 1px 5px 5px 1px #8447FF
 }
 
 form > p > a{
 text-decoration: none;
+color: #FFFFE8;
+}
+
+form > p > a:hover{
+	color: #8447ff;
+}
+
+.sign-in{
+	background-color: #8447FF;
 }
