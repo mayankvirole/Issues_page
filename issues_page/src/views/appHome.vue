@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark navi">
       <div class="container">
-        <a class="navbar-brand" href="#">Home</a>
+        <router-link to="/home" class="home">Home</router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
       </div>
     </nav>
     <section>
-      <div class="container mt-5">
+      <div class="container">
         <div class="issue-container">
           <ul>
             <li>
@@ -53,7 +53,7 @@
 
     <div class="container mt-5">
       <div class="issue-container">
-        <router-link to="/create_issue" class="bton" style="width : fit-content">+ New Issue</router-link>
+        <router-link to="/create_issue" class="bton">+ New Issue</router-link>
       </div>
     </div>
   </div>

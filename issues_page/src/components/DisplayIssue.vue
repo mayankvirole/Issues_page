@@ -1,7 +1,18 @@
 <template>
-	<div class="issue">
-		<h2>{{ issue.title}}</h2>
-		<p>{{ issue.desc }}</p>
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark navi">
+			<div class="container">
+				<router-link to="/home" class="home">Home</router-link>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+			</button>
+			</div>
+		</nav>
+		<div class="is">
+			<h2>{{ issue.title }}</h2>
+			<p>{{ issue.desc }}</p>
+		</div>
 	</div>
 </template>
 

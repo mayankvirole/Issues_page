@@ -1,7 +1,7 @@
-body {
-	margin : 0;
+.body {
+	margin : -2rem 0 0;
 	height: 100vh;
-  background: linear-gradient(105deg, #FFB2E6 25%, #D972FF 25%)
+  background: linear-gradient(105deg, #FFB2E6 50%, #D972FF 25%)
 }
 
 .login {

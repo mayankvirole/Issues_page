@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container body">
     <div class="row">
       <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 register">
         <h1>Register</h1>
