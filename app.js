@@ -31,8 +31,11 @@ app.get("/", (req,res) => {
 
 const userRoutes = require("./api/user/routes/user"); 
 const issueRoutes = require("./api/issues/routes/issues")
+const commentRoutes = require("./api/comments/routes/comments");
+
 app.use("/user", userRoutes);
 app.use("/issue", issueRoutes);
+app.use("/comment", commentRoutes);
 
 const PORT = process.env.PORT || 3000;
 
