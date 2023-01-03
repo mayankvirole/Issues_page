@@ -18,18 +18,20 @@ const issueSchema = mongoose.Schema({
 
 	author : 
 	{		
-		id: String,
+		id: {
+			type : mongoose.Schema.Types.ObjectId,
+			ref : 'User'
+		},
 		username: String
-	}
+	},
+
+	comments : 
+	[
+		{
+			type : mongoose.Schema.Types.ObjectId,
+			ref : 'Comment'
+		}
+	]
 })
-
-issueSchema.statics.findByCredentials = async (title) => {
-	const issue = await Issue.findOne({ title });
-  if (!issue) {
-    throw new Error({ error: "Invalid title" });
-  }
-
-  return issue;
-}
 
 module.exports = mongoose.model("Issue", issueSchema);

@@ -1,5 +1,4 @@
 const Issue = require("../models/Issue");
-const http = require('http');
 const url = require('url');
 
 exports.createNewIssue = async (req, res) => {
