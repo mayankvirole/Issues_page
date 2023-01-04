@@ -3,18 +3,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark navi">
       <div class="container">
         <router-link to="/home" class="home">Home</router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="user-tag nav-item active">Hi! {{ user.name }}</li>
-            <li class="nav-item active">
-              <a class="nav-link" @click="logUserOut"> Logout</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="navbar-nav">
+          <li class="user-tag nav-item active">Hi! {{ user.name }}</li>
+          <li class="nav-item active">
+            <a class="logout" @click="logUserOut"> Logout</a>
+          </li>
+        </ul>
       </div>
     </nav>
     <section>
@@ -22,11 +16,13 @@
         <div class="issue-container">
           <ul>
             <li>
-              <h3><span @click="toggle" v-bind:class="{ 'active-pane': !toggleIssues , 'inactive' : toggleIssues} ">All Issues</span>
+              <h3><span @click="toggle" v-bind:class="{ 'active-pane': !toggleIssues, 'inactive': toggleIssues }">All
+                  Issues</span>
               </h3>
             </li>
             <li>
-              <h3><span @click="toggle" v-bind:class="{ 'active-pane': toggleIssues ,  'inactive' : !toggleIssues} ">My Issues</span></h3>
+              <h3><span @click="toggle" v-bind:class="{ 'active-pane': toggleIssues, 'inactive': !toggleIssues }">My
+                  Issues</span></h3>
             </li>
           </ul>
           <div v-if="!toggleIssues">
@@ -51,7 +47,7 @@
       </div>
     </section>
 
-    <div class="container mt-5">
+    <div class="container">
       <div class="issue-container">
         <router-link to="/create_issue" class="bton">+ New Issue</router-link>
       </div>

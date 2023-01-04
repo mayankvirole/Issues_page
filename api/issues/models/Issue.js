@@ -25,13 +25,7 @@ const issueSchema = mongoose.Schema({
 		username: String
 	},
 
-	comments : 
-	[
-		{
-			type : mongoose.Schema.Types.ObjectId,
-			ref : 'Comment'
-		}
-	]
+	comments : []
 })
 
 module.exports = mongoose.model("Issue", issueSchema);

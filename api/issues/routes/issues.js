@@ -6,5 +6,6 @@ router.post("/create-issue", issueController.createNewIssue);
 router.get("/all-issues", issueController.getAllIssues);
 router.post("/my-issues", issueController.getIssuesByUser);
 router.get("/Issue", issueController.getIssueById);
+router.put("/update-issue" , issueController.updateIssue);
 
 module.exports = router;

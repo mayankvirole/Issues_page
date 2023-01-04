@@ -3,6 +3,31 @@
 	border-radius: 4px;
 	padding: 0.8rem;
 	width: 80%;
-	margin: auto;
   margin-top: 2rem;
+}
+
+.tox-tinymce{
+	height: 300px;
+	width: 80%;
+}
+
+.inner{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: auto;
+}
+
+.navbar-nav{
+	display: flex;
+  align-items: baseline;
+}
+
+.logout{
+	color: white;
+	text-decoration: none;
+}
+
+.logout:hover{
+	color : #FFB2E6;
 }

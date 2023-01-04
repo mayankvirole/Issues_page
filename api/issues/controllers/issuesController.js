@@ -56,3 +56,14 @@ exports.getAllIssues =  async (req,res) => {
 		res.status(400).json({err : err});
 	}
 }
+
+exports.updateIssue = async ( req, res) => {
+	try{
+		const val =  [...req.body.comments]
+		let Is = await Issue.updateOne( {_id : req.body._id}, { $set : {comments : val }});
+		res.status(201).json({Is});
+	}
+	catch(err){
+		res.status(400).json({err : err});
+	}
+}

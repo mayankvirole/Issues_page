@@ -69,6 +69,20 @@ body{
 	color: #8CFFDA;
 }
 
+.navbar-nav{
+	display: flex;
+  align-items: baseline;
+}
+
+.logout{
+	color: white;
+	text-decoration: none;
+}
+
+.logout:hover{
+	color : #FFB2E6;
+}
+
 @media  ( max-width : 440px ){
 	.issue-container{
 		justify-content: left;
