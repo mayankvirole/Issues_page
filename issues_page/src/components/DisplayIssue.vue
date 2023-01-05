@@ -2,9 +2,8 @@
 	<div>
 		<nav class="navbar navbar-expand-lg navbar-dark navi">
 			<div class="container">
-				<router-link to="/home" class="home">Home</router-link>
+				<router-link to="/home" class="home">Issues Page</router-link>
 				<ul class="navbar-nav">
-					<li class="user-tag nav-item active">Hi! {{ issue.author.username }}</li>
 					<li class="nav-item active">
 						<a class="logout" @click="logUserOut"> Logout</a>
 					</li>
@@ -15,12 +14,13 @@
 			<div class="is">
 				<h2>{{ issue.title }}</h2>
 				<p>{{ issue.desc }}</p>
+				<span class="time-tag">Created by {{ issue.author.username }} at {{ issue.createdAt.substring(0,10) }}</span>
 			</div>
 
 			<div v-for="comment in issue.comments" v-bind:key="comment._id">
 				<div class="comment">
 					<h4>{{ comment.text }}</h4>
-					<h4>Posted by {{ comment.author.username }}</h4>
+					<p>Posted by {{ comment.author.username }}</p>
 				</div>
 			</div>
 
@@ -28,15 +28,15 @@
 				<label for="comm"></label>
 				<editor api-key="x2wa24yd18evrl913zegfr0p5t0d37jbprlqo1jyt2sk8clw" v-model="comment.text" id="comm"
 					output-format="text" :init="{
-	selector: '#comm',
-	branding: false,
-	height: 300,
-	placeholder: 'Enter your comment here.'
+		selector: '#comm',
+		branding: false,
+		height: 300,
+		placeholder: 'Enter your comment here.'
 }" />
 
-				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4">Add Comment</button>
+				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4 com">Add Comment</button>
 			</div>
-			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4">New Comment</button>
+			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New Comment</button>
 		</div>
 	</div>
 </template>

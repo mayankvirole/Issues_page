@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark navi">
       <div class="container">
-        <router-link to="/home" class="home">Home</router-link>
+        <router-link to="/home" class="home">Issues Page</router-link>
         <ul class="navbar-nav">
           <li class="user-tag nav-item active">Hi! {{ user.name }}</li>
           <li class="nav-item active">
@@ -27,19 +27,25 @@
           </ul>
           <div v-if="!toggleIssues">
             <div v-for="issue in issues" :key="issue._id" class="issue">
-              <router-link :to="'/Issue?id=' + issue._id">
+              <div>
+              <router-link :to="'/Issue?id=' + issue._id" class="link">
                 <h4>{{ issue.title }}</h4>
               </router-link>
-              <h4>Created By {{ issue.author.username }} at {{ issue.createdAt.substring(0, 10) }}</h4>
+              <p>Created By {{ issue.author.username }} at {{ issue.createdAt.substring(0, 10) }}</p>
+              </div>
+              <span class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img src="../assets/images/edit.png" class="edit"/></router-link></span>
             </div>
 
           </div>
           <div v-if="toggleIssues">
             <div v-for="issue in myIssues" :key="issue._id" class="issue">
-              <router-link :to="'/Issue?id=' + issue._id">
+              <div>
+              <router-link :to="'/Issue?id=' + issue._id" class="link">
                 <h4>{{ issue.title }}</h4>
               </router-link>
-              <h4>Created at {{ issue.createdAt.substring(0, 10) }}</h4>
+              <p>Created at {{ issue.createdAt.substring(0, 10) }}</p>
+              </div>
+              <span class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img src="../assets/images/edit.png" class="edit"/></router-link></span>
             </div>
           </div>
 

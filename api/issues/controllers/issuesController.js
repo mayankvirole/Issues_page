@@ -67,3 +67,17 @@ exports.updateIssue = async ( req, res) => {
 		res.status(400).json({err : err});
 	}
 }
+
+exports.editIssue = async (req, res) => {
+	try{
+		const queryObject = url.parse(req.url, true).query;
+		let Is = await Issue.updateOne({ _id : queryObject.id }, { $set : {
+			title : req.body.title,
+			desc : req.body.desc
+		}})
+		res.status(201).json({Is});
+	}
+	catch(err){
+		res.status(400).json({err : err});
+	}
+}

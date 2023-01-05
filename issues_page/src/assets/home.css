@@ -16,6 +16,10 @@ body{
 	border-radius: 4px;
 	padding: 0.8rem;
 	margin : 1rem 0;
+	background-color: #FFFFE8;
+	display: flex;
+	justify-content: space-between;
+	width: 75%;
 }
 
 .issue-container {
@@ -45,12 +49,19 @@ body{
 	border: 1px #8447FF solid;
 	border-radius: 4px;
 	padding: 1rem;
+	background-color: #8CFFDA;
 }
 
 .inactive {
 	border: 1px white solid;
 	border-radius: 4px;
 	padding: 1rem;
+}
+
+.edit-span{
+	display: flex;
+	flex-wrap: wrap;
+	align-content:center;
 }
 
 .issue-container > ul {
@@ -69,6 +80,11 @@ body{
 	color: #8CFFDA;
 }
 
+.link{
+	text-decoration: none;
+	color : #D972FF;
+}
+
 .navbar-nav{
 	display: flex;
   align-items: baseline;
@@ -77,14 +93,22 @@ body{
 .logout{
 	color: white;
 	text-decoration: none;
+	padding: 0.5rem;
 }
 
 .logout:hover{
 	color : #FFB2E6;
 }
 
+.edit{
+	width: 2rem;
+}
+
 @media  ( max-width : 440px ){
 	.issue-container{
 		justify-content: left;
+	}
+	.issue {
+		width: 100%;
 	}
 }
