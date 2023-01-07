@@ -20,6 +20,11 @@
 						height : 300,
 						placeholder : 'Describe your issue in detail here.'
 						}" />
+
+					<label for="image">
+						Related Image :
+					</label>
+					<input type="file" name="image" id="image" @change="handleUpload"/>
 					<center>
 						<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
 					</center>
@@ -45,7 +50,8 @@ export default {
 				author : {
 					id : "",
 					username : ""
-				}
+				},
+				image: null
 			}
 		}
 	},
@@ -54,6 +60,7 @@ export default {
 		async handleSubmitForm() {
 			try {
 				let response = await this.$http.post("/issue/create-issue",this.issue);
+				console.log(this.issue, "this is our issue");
 				if(response.data) {
 					swal("Success","Issue was created", "success");
 					this.$router.push("/home");
@@ -73,6 +80,10 @@ export default {
 			let decoded = VueJwtDecode.decode(token);
 			this.issue.author.id = decoded._id;
 			this.issue.author.username = decoded.name;
+		},
+
+		handleUpload(){
+			this.issue.image = event.target.files[0];
 		}
 	},
 	components: {

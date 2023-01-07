@@ -1,4 +1,5 @@
 const Issue = require("../models/Issue");
+const Image = require("../models/Image");
 const url = require('url');
 
 exports.createNewIssue = async (req, res) => {
@@ -76,6 +77,17 @@ exports.editIssue = async (req, res) => {
 			desc : req.body.desc
 		}})
 		res.status(201).json({Is});
+	}
+	catch(err){
+		res.status(400).json({err : err});
+	}
+}
+
+exports.deleteIssue = async (req, res) => {
+	try{
+		let Is = await Issue.deleteOne({title : req.body.title});
+		if(Is.ok)
+		res.status(201).json({"success" : "Issue deleted."})
 	}
 	catch(err){
 		res.status(400).json({err : err});
