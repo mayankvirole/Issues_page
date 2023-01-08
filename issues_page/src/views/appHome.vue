@@ -43,8 +43,12 @@
                 </router-link>
                 <p>Created at {{ issue.createdAt.substring(0, 10) }}</p>
               </div>
-              <span class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img
-                    src="../assets/images/edit.png" class="edit" /></router-link></span>
+              <div class="icons">
+                <span class="del-span" @click="deleteIssue(`${issue._id}`)"><img class="del"
+                    src="../assets/images/delete.png" /></span>
+                <span class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img
+                      src="../assets/images/edit.png" class="edit" /></router-link></span>
+              </div>
             </div>
           </div>
 
@@ -109,6 +113,18 @@ export default {
       }
       catch(err) {
         console.log(err);
+      }
+    },
+
+    async deleteIssue(id) {
+      try {
+        console.log("title : ",id);
+        let response=await this.$http.delete(`/issue/delete-issue?id=${id}`);
+        if(response.status===201)
+          this.getMyIssues();
+      }
+      catch(err) {
+        console.log(err.message);
       }
     }
   },

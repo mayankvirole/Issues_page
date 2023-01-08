@@ -14,7 +14,7 @@
 			<div class="is">
 				<h2>{{ issue.title }}</h2>
 				<p>{{ issue.desc }}</p>
-				<span class="time-tag">Created by {{ issue.author.username }} at {{ issue.createdAt.substring(0,10) }}</span>
+				<span class="time-tag">Created by {{ issue.author.username }} at {{ issue.createdAt.substring(0, 10) }}</span>
 			</div>
 
 			<div v-for="comment in issue.comments" v-bind:key="comment._id">
@@ -28,15 +28,16 @@
 				<label for="comm"></label>
 				<editor api-key="x2wa24yd18evrl913zegfr0p5t0d37jbprlqo1jyt2sk8clw" v-model="comment.text" id="comm"
 					output-format="text" :init="{
-		selector: '#comm',
-		branding: false,
-		height: 300,
-		placeholder: 'Enter your comment here.'
-}" />
+						selector: '#comm',
+						branding: false,
+						height: 300,
+						placeholder: 'Enter your comment here.'
+					}" />
 
 				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4 com">Add Comment</button>
 			</div>
-			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New Comment</button>
+			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New
+				Comment</button>
 		</div>
 	</div>
 </template>

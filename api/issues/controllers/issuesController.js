@@ -85,7 +85,9 @@ exports.editIssue = async (req, res) => {
 
 exports.deleteIssue = async (req, res) => {
 	try{
-		let Is = await Issue.deleteOne({title : req.body.title});
+		const queryObject = url.parse(req.url, true).query;
+		console.log(queryObject);
+		let Is = await Issue.deleteOne({_id : queryObject.id});
 		if(Is.ok)
 		res.status(201).json({"success" : "Issue deleted."})
 	}

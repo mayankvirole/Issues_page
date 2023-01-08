@@ -35,7 +35,6 @@ body{
 	background-color: #8447FF;
 	border: 1px white solid;
 	border-radius: 4px;
-	width: 20%;
 	width : fit-content;
 }
 
@@ -62,6 +61,23 @@ body{
 	display: flex;
 	flex-wrap: wrap;
 	align-content:center;
+}
+
+.del-span{
+	background-color: red;
+  border-radius: 4px;
+	margin-bottom: 1rem;
+  margin-top: 1rem;
+	margin-right: 1rem;
+	transition: transform .2s;
+}
+
+.del-span:hover{
+	transform: scale(1.2);
+}
+
+.icons{
+	display: flex;
 }
 
 .issue-container > ul {
@@ -102,6 +118,12 @@ body{
 
 .edit{
 	width: 2rem;
+}
+
+.del{
+	background-color: red;
+	width: 2.2rem;
+	margin: 0.8rem;
 }
 
 @media  ( max-width : 440px ){
