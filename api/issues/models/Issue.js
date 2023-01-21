@@ -26,7 +26,12 @@ const issueSchema = mongoose.Schema({
 	},
 
 	comments : [],
-	image : ""	
+	image : ""	,
+	resolved : {
+		type : Boolean,
+		default : false,
+		required : true
+	}
 })
 
 module.exports = mongoose.model("Issue", issueSchema);

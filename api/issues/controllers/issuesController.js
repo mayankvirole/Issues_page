@@ -61,7 +61,7 @@ exports.getAllIssues =  async (req,res) => {
 exports.updateIssue = async ( req, res) => {
 	try{
 		const val =  [...req.body.comments]
-		let Is = await Issue.updateOne( {_id : req.body._id}, { $set : {comments : val }});
+		let Is = await Issue.updateOne( {_id : req.body._id}, { $set : {comments : val  , resolved : req.body.resolved}});
 		res.status(201).json({Is});
 	}
 	catch(err){

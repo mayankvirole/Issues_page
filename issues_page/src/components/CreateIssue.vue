@@ -17,14 +17,15 @@
 						:init="{
 							selector: '#desc',
             branding: false,
+						width : auto,
 						height : 300,
 						placeholder : 'Describe your issue in detail here.'
 						}" />
 
-					<label for="image">
+					<!-- <label for="image">
 						Related Image :
 					</label>
-					<input type="file" name="image" id="image" @change="handleUpload"/>
+					<input type="file" name="image" id="image" @change="handleUpload"/> -->
 					<center>
 						<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
 					</center>
