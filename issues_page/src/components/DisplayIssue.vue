@@ -36,6 +36,7 @@
 
 				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4 com">Add Comment</button>
 			</div>
+			<button v-if ="!isIssueResolved" @click = "markResolved" class="btn btn-primary btn-block w-25 my-4 rs">Mark as Resolved</button>
 			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New
 				Comment</button>
 		</div>
@@ -59,7 +60,8 @@ export default {
 					id: "",
 					username: ""
 				}
-			}
+			},
+			isIssueResolved : false
 		}
 	},
 
@@ -68,6 +70,7 @@ export default {
 			try {
 				let response=await this.$http.get(`/issue/Issue?id=${this.id}`);
 				this.issue=response.data.Is;
+				this.isIssueResolved = this.issue.resolved;
 			}
 			catch(err) {
 				console.log(err.message);
@@ -99,6 +102,12 @@ export default {
 			catch(err) {
 				console.log(err.message);
 			}
+		},	
+
+		async markResolved(){
+			this.issue.resolved = true;
+			this.updateIssue();
+			this.$router.push("/home");
 		},
 
 		logUserOut() {
