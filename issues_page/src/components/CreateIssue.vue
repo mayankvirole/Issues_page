@@ -1,4 +1,16 @@
 <template>
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark navi">
+			<div class="container">
+				<router-link to="/home" class="home">Issues Page</router-link>
+				<ul class="navbar-nav">
+					<li class="res-link"><router-link to="/resolved-issues">Resolved Issues</router-link></li>
+					<li class="nav-item active">
+						<a class="logout" @click="logUserOut"> Logout</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 ci">
@@ -33,7 +45,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 </template>
 
 <script>

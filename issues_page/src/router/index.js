@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/appHome.vue";
 import CreateIssue from "../views/createIssue.vue";
+import Resolved from "../components/DisplayResolvedIssues.vue";
+
 Vue.use(VueRouter);
 const routes = [
   {
@@ -36,6 +38,11 @@ const routes = [
     path : "/edit-issue",
     name : "edit-issue",
     component : () => import("../views/editIssue.vue")
+  },
+  {
+    path :  "/resolved-issues",
+    name : "resolved-issues",
+    component : Resolved
   }
 ];
 const router = new VueRouter({

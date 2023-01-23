@@ -4,6 +4,7 @@
       <div class="container">
         <router-link to="/home" class="home">Issues Page</router-link>
         <ul class="navbar-nav">
+          <li class="res-link"><router-link to="/resolved-issues">Resolved Issues</router-link></li>
           <li class="user-tag nav-item active">Hi! {{ user.name }}</li>
           <li class="nav-item active">
             <a class="logout" @click="logUserOut"> Logout</a>
@@ -44,9 +45,11 @@
                 <p>Created at {{ issue.createdAt.substring(0, 10) }}</p>
               </div>
               <div class="icons">
+                <span v-if="issue.resolved" class="check-span"><img
+                      src="../assets/images/check-mark.png" class="check" /></span>
                 <span class="del-span" @click="deleteIssue(`${issue._id}`)"><img class="del"
                     src="../assets/images/delete.png" /></span>
-                <span class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img
+                <span v-if="!issue.resolved" class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id" class="bton"><img
                       src="../assets/images/edit.png" class="edit" /></router-link></span>
               </div>
             </div>

@@ -17,6 +17,12 @@
 	margin: auto;
 }
 
+.btons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
 .navbar-nav{
 	display: flex;
   align-items: baseline;
@@ -43,6 +49,7 @@
 .com{
 	background-color: #8447FF;
 	transition: transform .2s;
+	padding: 0.2rem;
 }
 
 .com:hover{
@@ -50,3 +57,11 @@
 	transform: scale(1.2);
 }
 
+.res-link > a{
+	color: white;
+  text-decoration: none;
+}
+
+.res-link > a:hover{
+	color : #ffb2e6
+}

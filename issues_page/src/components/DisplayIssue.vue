@@ -4,6 +4,7 @@
 			<div class="container">
 				<router-link to="/home" class="home">Issues Page</router-link>
 				<ul class="navbar-nav">
+					<li class="res-link"><router-link to="/resolved-issues">Resolved Issues</router-link></li>
 					<li class="nav-item active">
 						<a class="logout" @click="logUserOut"> Logout</a>
 					</li>
@@ -36,9 +37,11 @@
 
 				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4 com">Add Comment</button>
 			</div>
+			<div class="btons">
 			<button v-if ="!isIssueResolved" @click = "markResolved" class="btn btn-primary btn-block w-25 my-4 rs">Mark as Resolved</button>
-			<button v-if="!allowComment" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New
+			<button v-if="!allowComment && !issue.resolved" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New
 				Comment</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -46,12 +49,15 @@
 <script>
 import "../assets/displayIssue.css";
 import Editor from '@tinymce/tinymce-vue';
+import swal from 'sweetalert';
+import VueJwtDecode from "vue-jwt-decode";
 
 export default {
 	props: ['id'],
 
 	data() {
 		return {
+			user : {},
 			issue: {},
 			allowComment: false,
 			comment: {
@@ -66,6 +72,12 @@ export default {
 	},
 
 	methods: {
+		getUserDetails() {
+      let token=localStorage.getItem("jwt");
+      let decoded=VueJwtDecode.decode(token);
+      this.user=decoded;
+    },
+
 		async getIssueDetails() {
 			try {
 				let response=await this.$http.get(`/issue/Issue?id=${this.id}`);
@@ -104,9 +116,18 @@ export default {
 			}
 		},	
 
+
+		checkIssuesOwnerShip(){
+			return (this.user._id === this.issue.author.id)
+		},
+
 		async markResolved(){
-			this.issue.resolved = true;
-			this.updateIssue();
+			if(this.checkIssuesOwnerShip())
+			{	this.issue.resolved = true;
+				this.updateIssue();
+				swal("Success" , "Issue marked resolved" , "success");
+			}
+			else swal("Error" , "You are not the author of this Issue" , "error");
 			this.$router.push("/home");
 		},
 
@@ -121,7 +142,9 @@ export default {
 	},
 
 	created() {
+		this.getUserDetails();
 		this.getIssueDetails();
+		this.checkIssuesOwnerShip();
 	}
 }
 </script>

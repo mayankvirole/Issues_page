@@ -26,3 +26,12 @@ form > input {
 form > textarea {
 	margin-top: 0.7rem;
 }
+
+.res-link > a{
+	color: white;
+  text-decoration: none;
+}
+
+.res-link > a:hover{
+	color : #ffb2e6
+}

@@ -63,6 +63,13 @@ body{
 	align-content:center;
 }
 
+.check-span{
+	display: flex;
+	flex-wrap: wrap;
+	align-content:center;
+	padding-right: 1rem;
+}
+
 .del-span{
 	background-color: red;
   border-radius: 4px;
@@ -120,10 +127,23 @@ body{
 	width: 2rem;
 }
 
+.check{
+	width: 3rem;
+}
+
 .del{
 	background-color: red;
 	width: 2.2rem;
 	margin: 0.8rem;
+}
+
+.res-link > a{
+	color: white;
+  text-decoration: none;
+}
+
+.res-link > a:hover{
+	color : #ffb2e6
 }
 
 @media  ( max-width : 440px ){
