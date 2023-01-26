@@ -20,6 +20,7 @@
               <h3><span class="active-pane">Resolved Issues</span></h3>
             </li>
           </ul>
+          <div v-if="myIssues.length > 0">
             <div v-for="issue in myIssues" :key="issue._id" class="issue">
               <div v-if="issue.resolved">
                 <router-link :to="'/Issue?id=' + issue._id" class="link">
@@ -34,7 +35,10 @@
                     src="../assets/images/delete.png" /></span>
             </div>
           </div>
-
+          </div>
+          <div v-if="myIssues.length == 0">
+            <h4>Nothing to see here. Create a new issue to get started</h4>
+          </div>
         </div>
       </div>
     </section>
@@ -101,10 +105,12 @@ export default {
 
     async deleteIssue(id) {
       try {
-        console.log("title : ",id);
         let response=await this.$http.delete(`/issue/delete-issue?id=${id}`);
         if(response.status===201)
+        {
           this.getMyIssues();
+          this.$router.push("/home");
+        }
       }
       catch(err) {
         console.log(err.message);

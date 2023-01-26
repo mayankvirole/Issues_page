@@ -1,6 +1,6 @@
 .body {
 	height: 100vh;
-  background: linear-gradient(105deg, #FFB2E6 50%, #D972FF 25%);
+  background: linear-gradient(105deg,#ffb2e6 25%,#d972ff 50%);
 	max-width : 100%;
 }
 
@@ -25,4 +25,10 @@ form > p > a:hover{
 
 .sign-in{
 	background-color: #8447FF;
+}
+
+#title {
+	font-family: monospace;
+	background-color: #D972D8;
+	font-size: larger;
 }

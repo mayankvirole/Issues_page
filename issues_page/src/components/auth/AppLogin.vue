@@ -2,7 +2,7 @@
   <div class="container body">
     <div class="row">
       <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 login" >
-        <h1>Login</h1>
+        <h1>Login to <span id="title">Issues_Page</span></h1>
         <form
           class="text-center border border-primary p-5"
           style="margin-top:70px;height:auto;padding-top:100px !important;"
