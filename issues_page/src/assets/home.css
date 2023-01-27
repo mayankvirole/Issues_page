@@ -92,6 +92,11 @@ body{
 	display: flex;
 	padding-left: 0;
 	margin-top: 2rem;
+	justify-content: space-between;
+}
+
+.issue-container > ul > div{
+	display: flex;
 }
 
 .home{
@@ -146,11 +151,29 @@ body{
 	color : #ffb2e6
 }
 
+.search-bar > div{
+	display: flex;
+}
+
+.search-bar > select {
+	width: 83%;
+	margin-left: 2.5rem;
+}
+
+.sicon{
+	width: 2.5rem;
+	padding-right: 1rem;
+}
+
 @media  ( max-width : 440px ){
 	.issue-container{
 		justify-content: left;
 	}
 	.issue {
 		width: 100%;
+	}
+	.search-bar{
+		opacity: 0;
+		width: 0;
 	}
 }
