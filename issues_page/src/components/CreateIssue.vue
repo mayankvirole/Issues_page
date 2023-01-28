@@ -16,8 +16,8 @@
 			<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 ci">
 				<h1 class="text-center">Create a new Issue</h1>
 				<form class="border border-primary p-5" @submit.prevent="handleSubmitForm">
-					<label for="title">Title </label>
-					<input class="form-control" type="text" name="title" id="title" required v-model="issue.title" placeholder="Enter issue title">
+					<label for="ti">Title </label>
+					<input class="form-control" type="text" name="title" id="ti" required v-model="issue.title" placeholder="Enter issue title">
 
 					<label for="desc">Description</label>
 					<editor 
