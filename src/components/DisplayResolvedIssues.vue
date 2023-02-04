@@ -16,61 +16,29 @@
       <div class="container">
         <div class="issue-container">
           <ul>
-            <div>
             <li>
-              <h3><span @click="toggle" v-bind:class="{ 'active-pane': !toggleIssues, 'inactive': toggleIssues }">All
-                  Issues</span>
-              </h3>
-            </li>
-            <li>
-              <h3><span @click="toggle" v-bind:class="{ 'active-pane': toggleIssues, 'inactive': !toggleIssues }">My
-                  Issues</span></h3>
-            </li>
-            </div>
-            <li class="search-bar">
-              <div>
-                <label for="sbar"><img src="../assets/images/search.png"
-                      class="sicon" /></label>
-                <span><input type="search" name="sbar" id="sbar" v-model="issueSearch"
-                    v-on:change="updateSearches($event)"></span>
-                </div>
-              <select v-on:change="changeRoute($event)">
-                <option v-for="issue in searchIssues" :key="issue._id" class="issue" v-bind:value="issue._id">
-                  {{ issue.title }}
-                </option>
-              </select>
+              <h3><span class="active-pane">Resolved Issues</span></h3>
             </li>
           </ul>
-
-          <div v-if="!toggleIssues">
-            <div v-for="issue in issues" :key="issue._id" class="issue">
-              <router-link :to="'/Issue?id=' + issue._id" class="link">
-                <h4>{{ issue.title }}</h4>
-              </router-link>
-              <p>Created By {{ issue.author.username }} at {{ issue.createdAt.substring(0, 10) }}</p>
-
-            </div>
-
-          </div>
-          <div v-if="toggleIssues">
+          <div v-if="myIssues.length > 0">
             <div v-for="issue in myIssues" :key="issue._id" class="issue">
-              <div>
+              <div v-if="issue.resolved">
                 <router-link :to="'/Issue?id=' + issue._id" class="link">
                   <h4>{{ issue.title }}</h4>
                 </router-link>
                 <p>Created at {{ issue.createdAt.substring(0, 10) }}</p>
               </div>
               <div class="icons">
-                <span v-if="issue.resolved" class="check-span"><img src="../assets/images/check-mark.png"
-                    class="check" /></span>
+                <span class="check-span"><img
+                      src="../assets/images/check-mark.png" class="check" /></span>
                 <span class="del-span" @click="deleteIssue(`${issue._id}`)"><img class="del"
                     src="../assets/images/delete.png" /></span>
-                <span v-if="!issue.resolved" class="edit-span"><router-link :to="'/edit-issue?id=' + issue._id"
-                    class="bton"><img src="../assets/images/edit.png" class="edit" /></router-link></span>
-              </div>
             </div>
           </div>
-
+          </div>
+          <div v-if="myIssues.length == 0">
+            <h4>Nothing to see here. Create a new issue to get started</h4>
+          </div>
         </div>
       </div>
     </section>
@@ -83,7 +51,7 @@
   </div>
 </template>
 <script>
-import "../../../issues_page/src/assets/home.css"
+import "/src/assets/home.css"
 import VueJwtDecode from "vue-jwt-decode";
 import swal from 'sweetalert';
 
@@ -93,9 +61,7 @@ export default {
       user: {},
       issues: [],
       myIssues: [],
-      searchIssues: [],
-      toggleIssues: false,
-      issueSearch: ""
+      toggleIssues: false
     };
   },
   methods: {
@@ -141,31 +107,20 @@ export default {
       try {
         let response=await this.$http.delete(`/api/issue/delete-issue?id=${id}`);
         if(response.status===201)
+        {
           this.getMyIssues();
+          this.$router.push("/home");
+        }
       }
       catch(err) {
         console.log(err.message);
       }
-    },
-
-    changeRoute(e) {
-      this.$router.push(`/Issue?id=${e.target.value}`);
-    },
-
-    updateSearches(e) {
-      console.log(e.target.value);
-      this.searchIssues=[];
-      this.searchIssues=this.issues.filter(function(issue) {
-        return issue.title.includes(e.target.value);
-      });
     }
   },
-
   created() {
     this.getUserDetails();
     this.getAllIssues();
     this.getMyIssues();
-  },
-
+  }
 };
 </script>
