@@ -113,7 +113,7 @@ export default {
     },
     async getAllIssues() {
       try {
-        let response=await this.$http.get("/issue/all-issues");
+        let response=await this.$http.get("/api/issue/all-issues");
         if(response.data) {
           this.issues=response.data.Issues;
         }
@@ -129,7 +129,7 @@ export default {
     },
     async getMyIssues() {
       try {
-        let response=await this.$http.post("/issue/my-issues",{username: this.user.name});
+        let response=await this.$http.post("/api/issue/my-issues",{username: this.user.name});
         if(response.data.Issues.length>=1) this.myIssues=response.data.Issues;
       }
       catch(err) {
@@ -139,8 +139,7 @@ export default {
 
     async deleteIssue(id) {
       try {
-        console.log("title : ",id);
-        let response=await this.$http.delete(`/issue/delete-issue?id=${id}`);
+        let response=await this.$http.delete(`/api/issue/delete-issue?id=${id}`);
         if(response.status===201)
           this.getMyIssues();
       }
@@ -159,7 +158,6 @@ export default {
       this.searchIssues=this.issues.filter(function(issue) {
         return issue.title.includes(e.target.value);
       });
-      console.log(this.searchIssues);
     }
   },
 

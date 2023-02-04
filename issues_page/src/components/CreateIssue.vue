@@ -11,41 +11,37 @@
 				</ul>
 			</div>
 		</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 ci">
-				<h1 class="text-center">Create a new Issue</h1>
-				<form class="border border-primary p-5" @submit.prevent="handleSubmitForm">
-					<label for="ti">Title </label>
-					<input class="form-control" type="text" name="title" id="ti" required v-model="issue.title" placeholder="Enter issue title">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 ci">
+					<h1 class="text-center">Create a new Issue</h1>
+					<form class="border border-primary p-5" @submit.prevent="handleSubmitForm">
+						<label for="ti">Title </label>
+						<input class="form-control" type="text" name="title" id="ti" required v-model="issue.title"
+							placeholder="Enter issue title">
 
-					<label for="desc">Description</label>
-					<editor 
-						api-key="x2wa24yd18evrl913zegfr0p5t0d37jbprlqo1jyt2sk8clw" 
-						plugins="code lists" 
-						v-model="issue.desc"
-						id="desc" 
-						output-format="text" 
-						:init="{
-							selector: '#desc',
-            branding: false,
-						width : auto,
-						height : 300,
-						placeholder : 'Describe your issue in detail here.'
-						}" />
+						<label for="desc">Description</label>
+						<editor api-key="x2wa24yd18evrl913zegfr0p5t0d37jbprlqo1jyt2sk8clw" plugins="code lists" v-model="issue.desc"
+							id="desc" output-format="text" :init="{
+								selector: '#desc',
+								branding: false,
+								width: auto,
+								height: 300,
+								placeholder: 'Describe your issue in detail here.'
+							}" />
 
-					<!-- <label for="image">
-						Related Image :
-					</label>
-					<input type="file" name="image" id="image" @change="handleUpload"/> -->
-					<center>
-						<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
-					</center>
-				</form>
+						<label for="image">
+							Related Image :
+						</label>
+						<input type="file" name="files" id="image" multiple @change="getFiles($event)" />
+						<center>
+							<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
+						</center>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </template>
 
 <script>
@@ -60,22 +56,23 @@ export default {
 			issue: {
 				title: "",
 				desc: "",
-				author : {
-					id : "",
-					username : ""
+				author: {
+					id: "",
+					username: ""
 				},
-				image: null
-			}
+				images: []
+			},
+			files: null
 		}
 	},
 
 	methods: {
 		async handleSubmitForm() {
 			try {
-				let response = await this.$http.post("/issue/create-issue",this.issue);
-				console.log(this.issue, "this is our issue");
+				this.handleUpload(this.files);
+				let response=await this.$http.post("api/issue/create-issue",this.issue);
 				if(response.data) {
-					swal("Success","Issue was created", "success");
+					swal("Success","Issue was created","success");
 					this.$router.push("/home");
 				}
 			}
@@ -88,21 +85,35 @@ export default {
 				}
 			}
 		},
-		generateAuth(){
-			let token = localStorage.getItem("jwt");
-			let decoded = VueJwtDecode.decode(token);
-			this.issue.author.id = decoded._id;
-			this.issue.author.username = decoded.name;
+		generateAuth() {
+			let token=localStorage.getItem("jwt");
+			let decoded=VueJwtDecode.decode(token);
+			this.issue.author.id=decoded._id;
+			this.issue.author.username=decoded.name;
 		},
 
-		handleUpload(){
-			this.issue.image = event.target.files[0];
+		addToIssue() {
+
+		},
+
+		async handleUpload(files) {
+			let res=await this.$http.post("/api/issue/upload",files);
+			console.log(res);
+		},
+
+		getFiles(e){
+			this.files = e.target.files;
+		},
+
+		logUserOut() {
+			localStorage.removeItem("jwt");
+			this.$router.push("/");
 		}
 	},
 	components: {
 		'editor': Editor
 	},
-	created () {
+	created() {
 		this.generateAuth();
 	}
 }

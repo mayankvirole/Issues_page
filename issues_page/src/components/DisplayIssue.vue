@@ -38,9 +38,9 @@
 				<button @click="postComment" class="btn btn-primary btn-block w-25 my-4 com">Add Comment</button>
 			</div>
 			<div class="btons">
-			<button v-if ="!isIssueResolved" @click = "markResolved" class="btn btn-primary btn-block w-25 my-4 rs">Mark as Resolved</button>
 			<button v-if="!allowComment && !issue.resolved" @click="addComment" class="btn btn-primary btn-block w-25 my-4 com">New
 				Comment</button>
+			<button v-if ="!isIssueResolved && !allowComment" @click = "markResolved" class="btn btn-primary btn-block w-25 my-4 rs">Mark as Resolved</button>
 			</div>
 		</div>
 	</div>
@@ -80,7 +80,7 @@ export default {
 
 		async getIssueDetails() {
 			try {
-				let response=await this.$http.get(`/issue/Issue?id=${this.id}`);
+				let response=await this.$http.get(`/api/issue/Issue?id=${this.id}`);
 				this.issue=response.data.Is;
 				this.isIssueResolved = this.issue.resolved;
 			}
@@ -96,7 +96,7 @@ export default {
 		async postComment() {
 			try {
 				this.comment.author=this.issue.author;
-				let response=await this.$http.post('/comment/add-comment',this.comment);
+				let response=await this.$http.post('/api/comment/add-comment',this.comment);
 				this.issue.comments.push(response.data.data);
 				this.updateIssue();
 				this.addComment();
@@ -108,7 +108,7 @@ export default {
 
 		async updateIssue() {
 			try {
-				let response=await this.$http.put('/issue/update-issue',this.issue);
+				let response=await this.$http.put('/api/issue/update-issue',this.issue);
 				console.log("response =>",response);
 			}
 			catch(err) {

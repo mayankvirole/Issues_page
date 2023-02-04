@@ -54,7 +54,7 @@ export default {
 	methods: {
 		async handleSubmitForm() {
 			try {
-				let response = await this.$http.put(`/issue/edit-issue?id=${this.id}`,this.issue);
+				let response = await this.$http.put(`/api/issue/edit-issue?id=${this.id}`,this.issue);
 				if(response.data) {
 					swal("Success","Issue was updated", "success");
 					this.$router.push("/home");
@@ -77,7 +77,7 @@ export default {
 		},
 		async getIssueDetails() {
 			try {
-				let response=await this.$http.get(`/issue/Issue?id=${this.id}`);
+				let response=await this.$http.get(`/api/issue/Issue?id=${this.id}`);
 				this.issue=response.data.Is;
 			}
 			catch(err) {
