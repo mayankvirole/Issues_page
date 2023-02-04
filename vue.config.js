@@ -2,7 +2,7 @@
 const path = require('path');
 
 module.exports = {
-  outputDir :  path.resolve( "public"),
+  outputDir :  path.resolve( "src/public"),
   devServer : {
     proxy : {
       "/api" : {
