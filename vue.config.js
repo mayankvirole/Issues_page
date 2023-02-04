@@ -9,6 +9,7 @@ module.exports = {
         target : "https://ipbe.onrender.com",
         secure : false
       }
-    }
+    },
+    disableHostCheck : true
   }
 }
