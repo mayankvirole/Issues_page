@@ -30,10 +30,10 @@
 								placeholder: 'Describe your issue in detail here.'
 							}" />
 
-						<label for="image">
+						<!-- <label for="image">
 							Related Image :
 						</label>
-						<input type="file" name="files" id="image" multiple @change="getFiles($event)" />
+						<input type="file" name="files" id="image" multiple @change="getFiles($event)" /> -->
 						<center>
 							<button class="btn btn-primary btn-block w-50 my-4" type="submit">Create Issue</button>
 						</center>
@@ -62,7 +62,7 @@ export default {
 				},
 				images: []
 			},
-			files: null
+			// files: null
 		}
 	},
 
@@ -92,18 +92,14 @@ export default {
 			this.issue.author.username=decoded.name;
 		},
 
-		addToIssue() {
+		// async handleUpload(files) {
+		// 	let res=await this.$http.post("/api/issue/upload",files);
+		// 	console.log(res);
+		// },
 
-		},
-
-		async handleUpload(files) {
-			let res=await this.$http.post("/api/issue/upload",files);
-			console.log(res);
-		},
-
-		getFiles(e){
-			this.files = e.target.files;
-		},
+		// getFiles(e){
+		// 	this.files = e.target.files;
+		// },
 
 		logUserOut() {
 			localStorage.removeItem("jwt");
