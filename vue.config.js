@@ -10,6 +10,6 @@ module.exports = {
         secure : false
       }
     },
-    disableHostCheck : true
+    allowedHosts : 'all'
   }
 }
