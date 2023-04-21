@@ -69,7 +69,6 @@ export default {
 	methods: {
 		async handleSubmitForm() {
 			try {
-				this.handleUpload(this.files);
 				let response=await this.$http.post("api/issue/create-issue",this.issue);
 				if(response.data) {
 					swal("Success","Issue was created","success");
